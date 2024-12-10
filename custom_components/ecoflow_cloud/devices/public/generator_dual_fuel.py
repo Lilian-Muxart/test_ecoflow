@@ -13,6 +13,7 @@ class Generator_DualFuel(BaseDevice):
             MiscBinarySensorEntity(client, self, "pd.motorState", const.MOTOR_STATE),
             RemainSensorEntity(client, self, "pd.motorUseTime", const.MOTOR_USE_TIME),
             LevelSensorEntity(client, self, "pd.oilVal", const.FUEL_LEVEL),
+            MiscSensorEntity(client, self, "pd.errorCode"),  # Ajout de MiscSensorEntity
         ]
 
     def switches(self, client: EcoflowApiClient) -> list[BaseSwitchEntity]:
