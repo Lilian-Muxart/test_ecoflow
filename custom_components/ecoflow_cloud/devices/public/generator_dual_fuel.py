@@ -27,9 +27,9 @@ class Generator_DualFuel(BaseDevice):
     def switches(self, client: EcoflowApiClient) -> list[BaseSwitchEntity]:
         return [
             EnabledEntity(client, self, "pd.motorCtrl", const.MOTOR_ENABLED,
-                          lambda value: {"moduleType": 2,"operateType": "motorCtrl", "params": {"enable": value}}),
+                          lambda value: {"isMatter": 0,"moduleType": 2,"operateType": "motorCtrl", "params": {"enable": value}}),
             EnabledEntity(client, self, "pd.sysMode", const.MOTOR_ECO,
-                          lambda value: {"moduleType": 2, "operateType": "motorCtrl", "params": {"mode": value}}),
+                          lambda value: {"isMatter": 0,"moduleType": 2, "operateType": "motorCtrl", "params": {"mode": value}}),
                           
                           ]
 
