@@ -275,3 +275,4 @@ POWER_SUB_MODE = "Sub-mode"
 
 MOTOR_STATE = "Motor State"
 MOTOR_USE_TIME = "Motor Use Time"
+MOTOR_ENABLED = "Motor Enable"
