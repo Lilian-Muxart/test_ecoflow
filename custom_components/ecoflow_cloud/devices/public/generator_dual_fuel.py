@@ -11,6 +11,8 @@ class Generator_DualFuel(BaseDevice):
         return [
 
             MiscBinarySensorEntity(client, self, "pd.motorState", const.MOTOR_STATE),
+            RemainSensorEntity(client, self, "pd.motorUseTime", const.MOTOR_USE_TIME),
+
 
         ]
 
