@@ -3,7 +3,7 @@ from custom_components.ecoflow_cloud.devices import BaseDevice, const
 from custom_components.ecoflow_cloud.entities import BaseSensorEntity, BaseNumberEntity, BaseSwitchEntity, BaseSelectEntity
 from ...sensor import StatusSensorEntity, InWattsSolarSensorEntity, DecivoltSensorEntity, CentivoltSensorEntity, \
     DeciampSensorEntity, CelsiusSensorEntity, DecicelsiusSensorEntity, MiscSensorEntity, LevelSensorEntity, DeciwattsSensorEntity, \
-    AmpSensorEntity, RemainSensorEntity, DecihertzSensorEntity, WattsSensorEntity, MilliVoltSensorEntity, TempSensorEntity, MiscBinarySensorEntity
+    AmpSensorEntity, RemainSensorEntity, DecihertzSensorEntity, WattsSensorEntity, MilliVoltSensorEntity, TempSensorEntity, MiscBinarySensorEntity,  VoltSensorEntity
 from custom_components.ecoflow_cloud.switch import EnabledEntity
 
 class Generator_DualFuel(BaseDevice):
@@ -13,13 +13,23 @@ class Generator_DualFuel(BaseDevice):
             MiscBinarySensorEntity(client, self, "pd.motorState", const.MOTOR_STATE),
             RemainSensorEntity(client, self, "pd.motorUseTime", const.MOTOR_USE_TIME),
             LevelSensorEntity(client, self, "pd.oilVal", const.FUEL_LEVEL),
-            MiscSensorEntity(client, self, "pd.errCode", const.ERROR_CODE),  # Ajout de MiscSensorEntity
+            MiscSensorEntity(client, self, "pd.errCode", const.ERROR_CODE),
+            WattsSensorEntity(client, self, "pd.totalPower", const.TOTAL_OUT_POWER),
+            WattsSensorEntity(client, self, "pd.acPower", const.AC_OUT_POWER),
+            WattsSensorEntity(client, self, "pd.dcPower", const.DC_OUT_POWER), 
+            RemainSensorEntity(client, self, "pd.remainTime", const.REMAINING_TIME),
+            VoltSensorEntity(client, self, "pd.dcVol", const.DC_OUT_VOLTAGE),
+            VoltSensorEntity(client, self, "pd.acVol", const.AC_OUT_VOLT),
+            #AmpSensorEntity(client, self, "pd.dcCur", const.DC_OUT_),
+            #AmpSensorEntity(client, self, "pd.acCur", const.AC_OUT_CURRENT),
         ]
 
     def switches(self, client: EcoflowApiClient) -> list[BaseSwitchEntity]:
         return [
             EnabledEntity(client, self, "pd.motorCtrl", const.MOTOR_ENABLED,
                           lambda value: {"operateType": "motorCtrl", "params": {"enable": value}}),
+            EnabledEntity(client, self, "pd.sysMode", const.MOTOR_ECO,
+                          lambda value: {"operateType": "motorCtrl", "params": {"mode": value}}),
                           
                           ]
 
