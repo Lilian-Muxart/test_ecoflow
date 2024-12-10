@@ -272,3 +272,5 @@ FAN_MODE = "Wind speed"
 MAIN_MODE = "Main mode"
 REMOTE_MODE = "Remote startup/shutdown"
 POWER_SUB_MODE = "Sub-mode"
+
+MOTOR_STATE = "Motor State"
