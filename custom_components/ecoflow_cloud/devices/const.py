@@ -274,3 +274,4 @@ REMOTE_MODE = "Remote startup/shutdown"
 POWER_SUB_MODE = "Sub-mode"
 
 MOTOR_STATE = "Motor State"
+MOTOR_USE_TIME = "Motor Use Time"
